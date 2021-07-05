@@ -1,9 +1,9 @@
-/////////////////// Trabajo Práctico No. 2 Disparadores//////////////////////
+---------- Trabajo Práctico No. 2 Disparadores ------------------
 
 USE negocioWebRopa;
 
 
-////////////////////////////////// CLIENTES //////////////////////////////////
+---------------------- CLIENTES -------------------------------------
 
 DROP TRIGGER IF EXISTS TR_clientes_insert_log; 
 
@@ -13,7 +13,7 @@ AFTER INSERT ON clientes
 FOR EACH ROW
   BEGIN
   INSERT INTO control(tabla, accion, fecha, hora, usuario, idRegistro)
-  VALUES('clientes', 'insert', curdate(), curtime(), current_user(), to_days(curdate())+time_to_sec(curtime())); // Garantizo un número único
+  VALUES('clientes', 'insert', curdate(), curtime(), current_user(), to_days(curdate())+time_to_sec(curtime())); -- Garantizo un número único
   END; //
 DELIMITER ; 
 
@@ -54,7 +54,7 @@ UPDATE clientes SET direccion = 'Finisterra 2000' WHERE id = 19;
 
 SELECT * FROM control;
 
-///////////////////////////////// ARTICULOS ///////////////////////////////
+---------------------------- ARTICULOS ----------------------------------
 
 DROP TRIGGER IF EXISTS TR_articulos_insert_log;
 
@@ -105,7 +105,7 @@ DELETE FROM articulos WHERE id = 8;
 
 SELECT * FROM control;
 
-////////////////////////////////// DETALLES ///////////////////////////////
+------------------------------- DETALLES --------------------------------------
 
 DROP TRIGGER IF EXISTS TR_detalles_insert_log;
 
@@ -155,7 +155,7 @@ DELETE FROM detalles WHERE id = 19;
 
 SELECT * FROM control;
 
-////////////////////////////////// FACTURAS //////////////////////////////
+--------------------------- FACTURAS --------------------------------------------
 
 DROP TRIGGER IF EXISTS TR_facturas_insert_log;
 
